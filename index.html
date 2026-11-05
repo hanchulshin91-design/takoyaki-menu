@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>신타코야끼 & 캔카페</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fffaf3;
+  color: #29231e;
+}
+
+header {
+  background: #ff9e24;
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+  border-radius: 0 0 25px 25px;
+}
+
+header h1 {
+  font-size: 29px;
+  margin: 5px;
+}
+
+header p {
+  margin-bottom: 0;
+}
+
+.container {
+  max-width: 750px;
+  margin: auto;
+  padding: 18px;
+}
+
+.search {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  font-size: 16px;
+  margin: 15px 0;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 8px 0 18px;
+}
+
+.tabs button {
+  border: none;
+  background: white;
+  border-radius: 30px;
+  padding: 12px 17px;
+  white-space: nowrap;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.tabs button.active {
+  background: #252525;
+  color: white;
+}
+
+h2 {
+  margin-top: 25px;
+  border-left: 5px solid #ff9e24;
+  padding-left: 12px;
+}
+
+.card {
+  background: white;
+  border-radius: 18px;
+  padding: 15px;
+  margin: 17px 0;
+  box-shadow: 0 3px 12px #0000000c;
+}
+
+.card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 13px;
+}
+
+.fallback {
+  display: none;
+  height: 190px;
+  background: #fff0d9;
+  border-radius: 13px;
+  place-items: center;
+  font-size: 65px;
+}
+
+.card h3 {
+  font-size: 20px;
+  margin: 14px 0 7px;
+}
+
+.desc {
+  color: #888;
+  font-size: 14px;
+}
+
+.badge {
+  display: inline-block;
+  background: #fff0d9;
+  color: #e47d00;
+  padding: 5px 9px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.price {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 0;
+  border-bottom: 1px solid #f2eee9;
+  font-size: 15px;
+}
+
+.price strong {
+  font-size: 16px;
+}
+
+.discount {
+  color: #6734ed;
+  font-weight: bold;
+  text-align: right;
+  margin: 5px 0 10px;
+}
+
+footer {
+  background: #29231e;
+  color: white;
+  text-align: center;
+  padding: 28px 15px;
+  margin-top: 40px;
+  line-height: 1.8;
+}
+
+.hidden {
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🐙 신타코야끼 & 캔카페</h1>
+  <p>정성 가득 수제 타코야끼!</p>
+  <p>맛있는 타코야끼와 시원한 음료 ☕</p>
+</header>
+
+<div class="container">
+
+<input
+  class="search"
+  id="search"
+  placeholder="🔍 메뉴 이름을 검색해 보세요!"
+>
+
+<div class="tabs">
+  <button class="active" onclick="filter('all',this)">전체 메뉴</button>
+  <button onclick="filter('popular',this)">인기 메뉴</button>
+  <button onclick="filter('tako',this)">수제 타코야끼</button>
+  <button onclick="filter('coffee',this)">Coffee</button>
+  <button onclick="filter('drink',this)">음료</button>
+</div>
+
+<h2>🐙 수제 타코야끼</h2>
+
+<div id="menu">
+
+<!-- 메뉴 1 -->
+<div class="card" data-category="tako popular">
+<span class="badge">인기 1위</span>
+<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Takoyaki%20Dish.jpg"
+onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"
+alt="타코야끼 대표 사진">
+<div class="fallback">🐙</div>
+<h3>(한그릇) 나홀로 반반 14알</h3>
+<p class="desc">14알 2가지 맛!</p>
+<div class="price"><span>14알</span><strong>13,500원</strong></div>
+<div class="discount">나의 할인가 12,500원</div>
+</div>
+
+<!-- 메뉴 2 -->
+<div class="card" data-category="tako popular">
+<span class="badge">인기 2위 · 사장님 추천</span>
+<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Takoyaki%20Dish.jpg"
+alt="오리지날 타코야끼">
+<h3>🐙 오리지날 타코야끼</h3>
+<p class="desc">진짜 문어 수제 반죽! 겉바속촉</p>
+<div class="price"><span>8알</span><strong>6,400원</strong></div>
+<div class="price"><span>14알</span><strong>10,400원</strong></div>
+<div class="price"><span>22알</span><strong>15,900원</strong></div>
+<div class="discount">할인가 14,900원</div>
+<div class="price"><span>28알</span><strong>19,400원</strong></div>
+<div class="discount">할인가 18,400원</div>
+</div>
+
+<!-- 메뉴 3 -->
+<div class="card" data-category="tako popular">
+<span class="badge">인기 3위 · 사장님 추천</span>
+<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Takoyaki%20Dish.jpg"
+alt="4가지 맛 타코야끼 세트">
+<h3>둘이서 세트 28알</h3>
+<p class="desc">네 가지 맛 + 음료! 가성비 최고</p>
+<div class="price"><span>28알</span><strong>18,000원</strong></div>
+<div class="discount">나의 할인가 17,000원</div>
+</div>
+
+<!-- 메뉴 4 -->
+<div class="card" data-category="tako">
+<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Takoyaki%20Dish.jpg"
+alt="네기 타코야끼">
+<h3>네기(대파) 타코야끼</h3>
+<p class="desc">신타코 베스트 메뉴! 가쓰오부시 X</p>
+<div class="price"><span>8알</span><strong>6,900원</strong></div>
+<div class="price"><span>14알</span><strong>10,900원</strong></div>
+<div class="price"><span>22알</span><strong>16,400원</strong></div>
+<div class="discount">할인가 15,400원</div>
+<div class="price"><span>28알</span><strong>19,900원</strong></div>
+<div class="discount">할인가 18,900원</div>
+</div>
+
+<!-- 메뉴 5 -->
+<div class="card" data-category="tako">
+<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Takoyaki%20Dish.jpg"
+alt="청양마요 타코야끼">
+<h3>청양마요 타코야끼</h3>
+<p class="desc">알싸한 청양고추가 올라간 타코야끼</p>
+<div class="price"><span>8알</span><strong>6,900원</strong></div>
+<div class="price"><span>14알</span><strong>10,900원</strong></div>
+<div class="price"><span>22알</span><strong>16,400원</strong></div>
+<div class="discount">할인가 15,400원</div>
+<div class="price"><span>28알</span><strong>19,900원</strong></div>
+<div class="discount">할인가 18,900원</div>
+</div>
+
+<!-- 메뉴 6 -->
+<div class="card" data-category="tako">
+<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Takoyaki%20Dish.jpg"
+alt="블랙페퍼 타코야끼">
+<h3>블랙페퍼 타코야끼</h3>
+<p class="desc">짭조름하니 중독적인 맛!</p>
+<div class="price"><span>8알</span><strong>6,400원</strong></div>
+<div class="price"><span>14알</span><strong>10,400원</strong></div>
+<div class="price"><span>22알</span><strong>15,900원</strong></div>
+<div class="discount">할인가 14,900원</div>
+<div class="price"><span>28알</span><strong>19,400원</strong></div>
+<div class="discount">할인가 18,400원</div>
+</div>
+
+<!-- 메뉴 7 -->
+<div class="card" data-category="tako">
+<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Takoyaki%20Dish.jpg"
+alt="와사비 타코야끼">
+<h3>와사비 타코야끼</h3>
+<p class="desc">코찡! 우리가 아는 와사비 맛</p>
+<div class="price"><span>8알</span><strong>6,400원</strong></div>
+<div class="price"><span>14알</span><strong>10,400원</strong></div>
+<div class="price"><span>22알</span><strong>15,900원</strong></div>
+<div class="discount">할인가 14,900원</div>
+<div class="price"><span>28알</span><strong>19,400원</strong></div>
+<div class="discount">할인가 18,400원</div>
+</div>
+
+<!-- 메뉴 8 -->
+<div class="card" data-category="tako">
+<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Takoyaki%20Dish.jpg"
+alt="마늘간장 타코야끼">
+<h3>마늘간장 타코야끼</h3>
+<p class="desc">달짠달짠 마늘간장 소스!</p>
+<div class="price"><span>8알</span><strong>6,400원</strong></div>
+<div class="price"><span>14알</span><strong>10,400원</strong></div>
+<div class="price"><span>22알</span><strong>15,900원</strong></div>
+<div class="discount">할인가 14,900원</div>
+<div class="price"><span>28알</span><strong>19,400원</strong></div>
+<div class="discount">할인가 18,400원</div>
+</div>
+
+<!-- 메뉴 9 -->
+<div class="card" data-category="tako">
+<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Takoyaki%20Dish.jpg"
+alt="바베큐 타코야끼">
+<h3>바베큐 타코야끼</h3>
+<p class="desc">달콤매콤 캠프 가고 싶은 맛!</p>
+<div class="price"><span>8알</span><strong>6,400원</strong></div>
+<div class="price"><span>14알</span><strong>10,400원</strong></div>
+<div class="price"><span>22알</span><strong>15,900원</strong></div>
+<div class="discount">할인가 14,900원</div>
+<div class="price"><span>28알</span><strong>19,400원</strong></div>
+<div class="discount">할인가 18,400원</div>
+</div>
+
+<!-- 메뉴 10 -->
+<div class="card" data-category="tako">
+<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Takoyaki%20Dish.jpg"
+alt="불닭치즈 타코야끼">
+<h3>불닭치즈 타코야끼</h3>
+<p class="desc">담백한 치즈소스 + 매콤한 소스</p>
+<div class="price"><span>8알</span><strong>6,900원</strong></div>
+<div class="price"><span>14알</span><strong>10,900원</strong></div>
+<div class="price"><span>22알</span><strong>16,400원</strong></div>
+<div class="discount">할인가 15,400원</div>
+<div class="price"><span>28알</span><strong>19,900원</strong></div>
+<div class="discount">할인가 18,900원</div>
+</div>
+
+<!-- 메뉴 11 -->
+<div class="card" data-category="tako">
+<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Takoyaki%20Dish.jpg"
+alt="갈릭버터 타코야끼">
+<h3>갈릭버터 타코야끼</h3>
+<p class="desc">주인장이 추천하는 갈릭버터!</p>
+<div class="price"><span>8알</span><strong>6,900원</strong></div>
+<div class="price"><span>14알</span><strong>10,900원</strong></div>
+<div class="price"><span>22알</span><strong>16,400원</strong></div>
+<div class="discount">할인가 15,400원</div>
+<div class="price"><span>28알</span><strong>19,900원</strong></div>
+<div class="discount">할인가 18,900원</div>
+</div>
+
+<!-- 메뉴 12 -->
+<div class="card" data-category="tako">
+<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Takoyaki%20Dish.jpg"
+alt="치즈맛 타코야끼">
+<h3>치즈맛 타코야끼</h3>
+<p class="desc">풍미 깊은 치즈 맛!</p>
+<div class="price"><span>8알</span><strong>6,400원</strong></div>
+<div class="price"><span>14알</span><strong>10,400원</strong></div>
+<div class="price"><span>22알</span><strong>15,900원</strong></div>
+<div class="discount">할인가 14,900원</div>
+<div class="price"><span>28알</span><strong>19,400원</strong></div>
+<div class="discount">할인가 18,400원</div>
+</div>
+
+</div>
+
+<h2>☕ Coffee</h2>
+
+<div class="card" data-category="coffee">
+<h3>아이스 아메리카노</h3>
+<p>500ml 캔</p>
+<strong>3,200원</strong>
+</div>
+
+<div class="card" data-category="coffee">
+<h3>아이스 카페라떼</h3>
+<p>500ml 캔</p>
+<strong>3,600원</strong>
+</div>
+
+<div class="card" data-category="coffee">
+<h3>아이스 바닐라라떼</h3>
+<p>500ml 캔</p>
+<strong>4,100원</strong>
+</div>
+
+<div class="card" data-category="coffee">
+<h3>달달한 다방 커피</h3>
+<p>500ml 캔 · 달달구리!</p>
+<strong>3,500원</strong>
+</div>
+
+<h2>🧊 음료</h2>
+
+<div class="card" data-category="drink popular">
+<span class="badge">인기 5위</span>
+<h3>복숭아 아이스티</h3>
+<p>500ml 캔</p>
+<strong>3,200원</strong>
+</div>
+
+</div>
+
+<footer>
+<h3>🐙 신타코야끼 & 캔카페</h3>
+<p>맛있는 타코야끼와 함께 행복한 시간!</p>
+<p>방문해 주셔서 감사합니다 ❤️</p>
+</footer>
+
+<script>
+let currentFilter = 'all';
+
+function filter(category, button) {
+  currentFilter = category;
+
+  document.querySelectorAll('.tabs button')
+    .forEach(b => b.classList.remove('active'));
+
+  button.classList.add('active');
+  searchMenu();
+}
+
+function searchMenu() {
+  const word = document.getElementById('search')
+    .value.toLowerCase();
+
+  document.querySelectorAll('.card').forEach(card => {
+    const category = card.dataset.category || '';
+    const matchCategory =
+      currentFilter === 'all' ||
+      category.includes(currentFilter);
+
+    const matchWord =
+      card.innerText.toLowerCase().includes(word);
+
+    card.classList.toggle(
+      'hidden',
+      !(matchCategory && matchWord)
+    );
+  });
+}
+
+document.getElementById('search')
+  .addEventListener('input', searchMenu);
+</script>
+
+</body>
+</html>
